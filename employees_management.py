@@ -7,6 +7,7 @@ FILE_NAME = "employees.json"
 def load_employees():
     if os.path.exists(FILE_NAME):
         with open(FILE_NAME, "r") as file:
+        
             return json.load(file)
     return []
 
@@ -96,5 +97,21 @@ def menu():
         else:
             print("\nInvalid choice! Try again.\n")
 
+def search_employee():
+    employees = load_employees()
 
+    emp_id = input("Enter Employee ID to search: ")
+
+    for emp in employees:
+        if emp["ID"] == emp_id:
+            print("\nEmployee Found")
+            print("-" * 40)
+            print(f"ID         : {emp['ID']}")
+            print(f"Name       : {emp['Name']}")
+            print(f"Department : {emp['Department']}")
+            print(f"Salary     : {emp['Salary']}")
+            print("-" * 40)
+            return
+
+    print("\nEmployee not found!\n")
 menu()
