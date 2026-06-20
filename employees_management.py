@@ -114,4 +114,27 @@ def search_employee():
             return
 
     print("\nEmployee not found!\n")
+
+    def export_to_csv():
+    employees = load_employees()
+
+    if not employees:
+        print("\nNo employee records found.\n")
+        return
+
+    with open("employees_export.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow(["ID", "Name", "Department", "Salary"])
+
+        for emp in employees:
+            writer.writerow([
+                emp["ID"],
+                emp["Name"],
+                emp["Department"],
+                emp["Salary"]
+            ])
+
+    print("\nEmployee data exported successfully!")
+    print("File created: employees_export.csv\n")
 menu()
